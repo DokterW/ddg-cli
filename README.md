@@ -12,5 +12,9 @@ Simple as that.
 
 ### Changelog
 
+#### 2017-08-17
+* If lynx is not installed, it will be.
+* Shortened the sequence for fetching the url.
+
 #### 2017-08-16
 * Released!

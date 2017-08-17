@@ -1,9 +1,22 @@
 #!/bin/bash
-# ddg-cli v0.1
+# ddg-cli v0.2
 # Made by Dr. Waldijk
 # DuckDuckGo cli.
 # Read the README.md for more info, but you will find more info here below.
 # By running this script you agree to the license terms.
+# Config ----------------------------------------------------------------------------
+DDGNAM="ddg-cli"
+DDGVER="0.2"
+# Install dependencies --------------------------------------------------------------
+if [ ! -e /usr/bin/lynx ]; then
+    DDGOSD=$(cat /etc/system-release | grep -oE '^[A-Z][a-z]+\s' | sed '1s/\s//')
+    if [ "$DDGOSD" = "Fedora" ]; then
+        sudo dnf -y install lynx
+    else
+        echo "You need to install lynx."
+        exit
+    fi
+fi
 # -----------------------------------------------------------------------------------
 read -p "> " DDGSRCH
 echo ""
@@ -12,33 +25,11 @@ DDGRSLT=$(lynx -dump -nolist "https://duckduckgo.com/?q=$DDGSRCH" | tail -n +13 
 echo "$DDGRSLT"
 echo ""
 read -p "> " -s -n1 DDGKEY
-case "$DDGKEY" in
-    1)
-        DDGURL=$(echo "$DDGRSLT" | sed -n '2p')
-        xdg-open $DDGURL
-        echo ""
-    ;;
-    2)
-        DDGURL=$(echo "$DDGRSLT" | sed -n '4p')
-        xdg-open $DDGURL
-        echo ""
-    ;;
-    3)
-        DDGURL=$(echo "$DDGRSLT" | sed -n '6p')
-        xdg-open $DDGURL
-        echo ""
-    ;;
-    4)
-        DDGURL=$(echo "$DDGRSLT" | sed -n '8p')
-        xdg-open $DDGURL
-        echo ""
-    ;;
-    5)
-        DDGURL=$(echo "$DDGRSLT" | sed -n '10p')
-        xdg-open $DDGURL
-        echo ""
-    ;;
-    *)
-        echo "Wrong option!"
-    ;;
-esac
+if [[ "$DDGKEY" -ge "1" && "$DDGKEY" -le "5" ]]; then
+    DDGLIN=$(echo "2*$DDGKEY" | bc)
+    DDGURL=$(echo "$DDGRSLT" | sed -n "$DDGLIN p")
+    xdg-open $DDGURL
+    echo ""
+else
+    echo "Wrong option!"
+fi
