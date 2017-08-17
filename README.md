@@ -15,6 +15,7 @@ Simple as that.
 #### 2017-08-17
 * If lynx is not installed, it will be.
 * Shortened the sequence for fetching the url.
+* Made the formatting a bit better.
 
 #### 2017-08-16
 * Released!
