@@ -1,12 +1,12 @@
 #!/bin/bash
-# ddg-cli v0.4
+# ddg-cli v0.5
 # Made by Dr. Waldijk
 # DuckDuckGo cli.
 # Read the README.md for more info, but you will find more info here below.
 # By running this script you agree to the license terms.
 # Config ----------------------------------------------------------------------------
 DDGNAM="ddg-cli"
-DDGVER="0.4"
+DDGVER="0.5"
 DDGFLG=$1
 DDGOPT=$2
 # Install dependencies --------------------------------------------------------------
