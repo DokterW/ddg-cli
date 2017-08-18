@@ -4,13 +4,19 @@
 
 Simple as that.
 
+*ddg-cli version* shows the version...
+*ddg-cli results 10* shows ten results.
+
 ### Roadmap
 
 * Better handling of entering the wrong option.
-* Option to show more than 5 results.
 * Better text formatting.
 
 ### Changelog
+
+#### 2017-08-18
+* ddg-cli version, shows the version...
+* ddg-cli results 10, shows ten results.
 
 #### 2017-08-17
 * If lynx is not installed, it will be.
