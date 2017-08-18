@@ -23,7 +23,7 @@ fi
 if [[ "$DDGFLG" = "version" ]]; then
     echo "$DDGNAM v$DDGVER"
 else
-    if [[ "$DDGFLG" "results" && -n "$DDGOPT" ]]; then
+    if [[ "$DDGFLG" = "results" && -n "$DDGOPT" ]]; then
         DDGVIEW=$(echo "2*$DDGOPT" | bc)
     else
         DDGVIEW="10"
