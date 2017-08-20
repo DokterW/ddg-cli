@@ -10,9 +10,13 @@ Simple as that.
 ### Roadmap
 
 * Better handling of entering the wrong option.
-* Better text formatting.
+* Improve URL handling
 
 ### Changelog
+
+#### 2017-08-20
+* Improved formatting of text to make it more readable.
+* Press q if you don't want to open one of the results.
 
 #### 2017-08-18
 * ddg-cli version, shows the version...
