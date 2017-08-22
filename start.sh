@@ -1,12 +1,12 @@
 #!/bin/bash
-# ddg-cli v0.7
+# ddg-cli v0.8
 # Made by Dr. Waldijk
 # DuckDuckGo cli.
 # Read the README.md for more info, but you will find more info here below.
 # By running this script you agree to the license terms.
 # Config ----------------------------------------------------------------------------
 DDGNAM="ddg-cli"
-DDGVER="0.7"
+DDGVER="0.8"
 DDGCOL=$(tput cols)
 DDGCOL=$(expr $DDGCOL - 10)
 DDGFLG=$1
@@ -34,12 +34,13 @@ else
     echo ""
     DDGSRCH=$(echo $DDGSRCH | sed -r 's/ /+/')
     # Search result
-    DDGRSLT=$(lynx -dump -nolist "https://duckduckgo.com/?q=$DDGSRCH&t=hw&ia=web" | tail -n +13 | sed -r 's/^ + //g' | \
-    sed -r 's/^([0-9]{1,2}\.  .*)/\1\./g' | \
-    sed -r 's/(^.+\.[a-z]{2,8}.+\/[A-Za-z]+|^.+\.[a-z]{2,8}\/[A-Za-z]+.+\)|^.+\.[a-z]{2,8}\/[a-z]+.+\/|^.*\.[a-z]{2,8})$/https:\/\/\1/g' | \
-    tr '\n' '  ' | sed -r 's/([0-9]{1,2}\.  )/\n\1/g' | \
-    sed -r 's/(https.*)$/\n\1/g' | \
-    tail -n +2 | sed -n "1,$DDGVIEW p")
+    DDGRSLT=$(lynx -dump -nolist "https://duckduckgo.com/?q=$DDGSRCH&t=hw&ia=web" | tail -n +13 | sed -r 's/       ([a-z-]+\.[a-z]{2,8}.+)/https:\/\/\1/g' | sed -r '/   [A-Za-z]/d' | sed -r 's/   ([0-9]{1,2}\.)/\1/g' | sed -r '/^$/d' | sed -n "1,$DDGVIEW p")
+#    DDGRSLT=$(lynx -dump -nolist "https://duckduckgo.com/?q=$DDGSRCH&t=hw&ia=web" | tail -n +13 | sed -r 's/^ + //g' | \
+#    sed -r 's/^([0-9]{1,2}\.  .*)/\1\./g' | \
+#    sed -r 's/(^.+\.[a-z]{2,8}.+\/[A-Za-z]+|^.+\.[a-z]{2,8}\/[A-Za-z]+.+\)|^.+\.[a-z]{2,8}\/[a-z]+.+\/|^.*\.[a-z]{2,8})$/https:\/\/\1/g' | \
+#    tr '\n' '  ' | sed -r 's/([0-9]{1,2}\.  )/\n\1/g' | \
+#    sed -r 's/(https.*)$/\n\1/g' | \
+#    tail -n +2 | sed -n "1,$DDGVIEW p")
     # Format text
     echo "$DDGRSLT" | \
     # ([0-9]{1,2}\.  .+ - [a-zA-Z]+\. |[0-9]{1,2}\.  .+ \| .+[a-zA-Z]+\. |[0-9]{1,2}\.  [a-zA-Z]+ - .+[a-zA-Z]+ [a-zA-Z]+\. )[a-zA-Z]+
@@ -47,10 +48,10 @@ else
     # ([0-9]{1,2}\.  .+ - [a-zA-Z]+\.|[0-9]{1,2}\.  .+ - .+[a-zA-Z]+ [a-zA-Z]+\.|[0-9]{1,2}\.  .+ \| .+[a-zA-Z]+\.) [a-zA-Z]
     # ([0-9]{1,2}\.  [A-Z][a-z]+ .+ - [a-zA-Z]+\.|[0-9]{1,2}\.  [A-Z][a-z]+ - .+ [a-zA-Z]+ [a-zA-Z]+\.|[0-9]{1,2}\.  [A-Z][a-z]+ \| .+ .+[a-zA-Z]+\.) [a-zA-Z]
     # ([0-9]{1,2}\.  [A-Z][a-z]+ \| .+\.|[0-9]{1,2}\.  [A-Z][a-z]+ .+ - [A-Za-z]+\.|[0-9]{1,2}\.  [A-Z][a-z]+ - [ A-Za-z]+\.)
-    sed -r 's/([0-9]{1,2}\.  [A-Z][a-z]+ \| .+\.|[0-9]{1,2}\.  [A-Z][a-z]+ .+ - [A-Za-z]+\.|[0-9]{1,2}\.  [A-Z][a-z]+ - [ A-Za-z]+\.|[0-9]{1,2}\.  [A-Z][a-z]+ - [ A-Za-z]+ -[ A-Za-z]+ .+\.) /    \1\nx\n    /g' | \
-    fmt -w $DDGCOL | \
-    sed -r 's/^    ([0-9]{1,2}\.  )/\1/g' | \
-    sed -r '/^x$/d' | \
+#    sed -r 's/([0-9]{1,2}\.  [A-Z][a-z]+ \| .+\.|[0-9]{1,2}\.  [A-Z][a-z]+ .+ - [A-Za-z]+\.|[0-9]{1,2}\.  [A-Z][a-z]+ - [ A-Za-z]+\.|[0-9]{1,2}\.  [A-Z][a-z]+ - [ A-Za-z]+ -[ A-Za-z]+ .+\.) /    \1\nx\n    /g' | \
+#    fmt -w $DDGCOL | \
+#    sed -r 's/^    ([0-9]{1,2}\.  )/\1/g' | \
+#    sed -r '/^x$/d' | \
     sed -r 's/(https:.*)/\1\n/g' | head -n -1
     echo ""
     read -p "> " -s -n1 DDGKEY
