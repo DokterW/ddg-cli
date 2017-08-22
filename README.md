@@ -10,9 +10,12 @@ Simple as that.
 ### Roadmap
 
 * Better handling of entering the wrong option.
-* Improve URL handling
 
 ### Changelog
+
+#### 2017-08-22
+* Improved URL handling
+* Improved text formatting with better indentation.
 
 #### 2017-08-20
 * Improved formatting of text to make it more readable.
