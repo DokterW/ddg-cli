@@ -13,6 +13,9 @@ Simple as that.
 
 ### Changelog
 
+### 2017-12-04
+* Improved the regex for trimming the Lynx dump from DDG
+
 #### 2017-08-22
 * Improved URL handling
 * Improved text formatting with better indentation.
