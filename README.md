@@ -7,6 +7,12 @@ Simple as that.
 *ddg-cli version* shows the version...
 *ddg-cli results 10* shows ten results.
 
+When you have started the script, just enter what you want to search for.
+
+If you want to you do a new search press s, or q for quit.
+
+If you have started the script or pressed s, but want to quit, just typ quitddg.
+
 ### Roadmap
 
 * Better handling of entering the wrong option.
